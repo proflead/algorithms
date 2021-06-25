@@ -1,1 +1,1 @@
-# Most popular algorithms written on JavaScript
+# Most popular algorithms written in JavaScript
