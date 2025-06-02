@@ -15,10 +15,3 @@ class ArrayClass {
         return this.newArray.indexOf(value);
     }
 }
-
-let myArray = new ArrayClass();
-myArray.insert(10);
-console.log(myArray.indexOf(10));
-myArray.print();
-myArray.remove(0);
-myArray.print();

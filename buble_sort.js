@@ -25,8 +25,3 @@ class BubleSort {
     }
     
 }
-
-let numbers = [1,2,5,7,8,3,1,23,4];
-let sortedNumbers = [1,2,3,4,5];
-let sorting = new BubleSort();
-console.log(sorting.bubleSort(sortedNumbers));

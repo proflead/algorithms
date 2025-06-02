@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+h2 {
+    color: #555;
+}
+
+#examples {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+#examples a {
+    display: block;
+    margin-bottom: 8px;
+    color: #007bff;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+#examples a:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+}
+
+#results {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#output {
+    white-space: pre-wrap; /* Allows wrapping and preserves whitespace */
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 4px;
+    font-family: monospace;
+    min-height: 50px; /* Ensure it's visible even when empty */
+}
