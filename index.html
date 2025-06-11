@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Algorithms Web Interface</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    input, select, button { margin: 5px 0; }
+    pre { background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+<body>
+  <h1>Algorithms Web Interface</h1>
+
+  <label>Array (comma separated):</label><br>
+  <input id="arrayInput" type="text" size="50" value="1,2,5,7,8,3,1,23,4"><br>
+
+  <label>Target (if needed):</label><br>
+  <input id="targetInput" type="text"><br>
+
+  <label>Algorithm:</label><br>
+  <select id="algorithmSelect">
+    <option value="bubble">Bubble Sort</option>
+    <option value="insertion">Insertion Sort</option>
+    <option value="binary">Binary Search (Iterative)</option>
+    <option value="binaryRecursive">Binary Search (Recursive)</option>
+    <option value="jump">Jump Search</option>
+  </select><br>
+
+  <button id="runButton">Run</button>
+
+  <h2>Result</h2>
+  <pre id="result"></pre>
+
+  <script src="web_algorithms.js"></script>
+  <script>
+    document.getElementById('runButton').addEventListener('click', () => {
+      const array = document.getElementById('arrayInput').value
+        .split(',')
+        .map(Number);
+      const targetValue = document.getElementById('targetInput').value;
+      const target = targetValue !== '' ? Number(targetValue) : targetValue;
+      const alg = document.getElementById('algorithmSelect').value;
+      let result;
+
+      switch (alg) {
+        case 'bubble':
+          result = bubbleSort(array.slice());
+          break;
+        case 'insertion':
+          result = insertionSort(array.slice());
+          break;
+        case 'binary':
+          result = binarySearchIterative(array.slice().sort((a,b)=>a-b), target);
+          break;
+        case 'binaryRecursive':
+          result = binarySearchRecursive(array.slice().sort((a,b)=>a-b), target);
+          break;
+        case 'jump':
+          result = jumpSearch(array.slice().sort((a,b)=>a-b), target);
+          break;
+      }
+      document.getElementById('result').textContent = JSON.stringify(result);
+    });
+  </script>
+</body>
+</html>
