@@ -70,3 +70,8 @@ function jumpSearch(array, target, start = 0, stop = array.length, jumpStep = Ma
   }
   return -1;
 }
+
+
+if (typeof module !== "undefined") {
+  module.exports = { bubbleSort, insertionSort, binarySearchIterative, binarySearchRecursive, jumpSearch };
+}
