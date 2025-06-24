@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Algorithms Web Interface</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoQrF7FgiJTNV4p6Y9G6i5q5p3jtI6h0OJz9k59+di6L6k0"
+    crossorigin="anonymous"
+  />
+  <style>
+    body { margin: 20px; }
+    pre { background: #f4f4f4; padding: 10px; }
+  </style>
+</head>
+  <body>
+    <div class="container">
+      <h1 class="mb-4">Algorithms Web Interface</h1>
+
+      <div class="mb-3">
+        <label class="form-label">Array (comma separated)</label>
+        <input
+          id="arrayInput"
+          type="text"
+          class="form-control"
+          value="1,2,5,7,8,3,1,23,4"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Target (if needed)</label>
+        <input id="targetInput" type="text" class="form-control" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Algorithm</label>
+        <select id="algorithmSelect" class="form-select">
+          <option value="bubble">Bubble Sort</option>
+          <option value="insertion">Insertion Sort</option>
+          <option value="binary">Binary Search (Iterative)</option>
+          <option value="binaryRecursive">Binary Search (Recursive)</option>
+          <option value="jump">Jump Search</option>
+        </select>
+      </div>
+
+      <button id="runButton" class="btn btn-primary mb-3">Run</button>
+
+      <h2>Result</h2>
+      <pre id="result" class="form-control"></pre>
+    </div>
+
+  <script src="web_algorithms.js"></script>
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENz1BzTpiKFF59volG/G5hgbf+5Q5e0MyoY9hw3rroWAtxEvsC0BpvyOuk+qS0b4"
+    crossorigin="anonymous"
+  ></script>
+  <script>
+    document.getElementById('runButton').addEventListener('click', () => {
+      const array = document.getElementById('arrayInput').value
+        .split(',')
+        .map(Number);
+      const targetValue = document.getElementById('targetInput').value;
+      const target = targetValue !== '' ? Number(targetValue) : targetValue;
+      const alg = document.getElementById('algorithmSelect').value;
+      let result;
+
+      switch (alg) {
+        case 'bubble':
+          result = bubbleSort(array.slice());
+          break;
+        case 'insertion':
+          result = insertionSort(array.slice());
+          break;
+        case 'binary':
+          result = binarySearchIterative(array.slice().sort((a,b)=>a-b), target);
+          break;
+        case 'binaryRecursive':
+          result = binarySearchRecursive(array.slice().sort((a,b)=>a-b), target);
+          break;
+        case 'jump':
+          result = jumpSearch(array.slice().sort((a,b)=>a-b), target);
+          break;
+      }
+      document.getElementById('result').textContent = JSON.stringify(result);
+    });
+  </script>
+</body>
+</html>
