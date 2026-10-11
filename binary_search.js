@@ -5,7 +5,7 @@
 //Iterative implementation
 const binarySearchIterative = (intArray, target) => {
     let start = 0;
-    let end = intArray.length;
+    let end = intArray.length - 1;
     let mid = Math.floor((start + end) / 2);
     while(end >= start) {
         if(intArray[mid] === target) {
@@ -22,9 +22,9 @@ const binarySearchIterative = (intArray, target) => {
 }
 
 //Recursive implementation
-const binarySearchRecursive = (intArray, target, start = 0, end = intArray.length) => {
+const binarySearchRecursive = (intArray, target, start = 0, end = intArray.length - 1) => {
     let mid = Math.floor((start + end) / 2);
-    if(start < end){
+    if(start <= end){
         if(intArray[mid] === target) {
             return mid;
         } else if(target > intArray[mid]) {

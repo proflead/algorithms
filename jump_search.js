@@ -1,19 +1,25 @@
 // Algorithm Jump Search
-// It's a recursive algorithm. The complexity is O(log n). 
-// The idea is to define the step and jump through the array and compare the target 
-// value with current. If current value > target then step back and start an 
-// linear search of each value between previous jumps step and current.
+// Searches a SORTED array in O(sqrt(n)) time with the default jump step.
+// Jump through block endpoints, then linearly scan the candidate block.
 
-// @return index of target element in array
-const jumpSearch = (array, target, start = 0, stop = array.length, jumpStep = Math.floor(Math.sqrt(array.length-1))) => {
-    for(let i = start; i <= stop; i +=jumpStep) {
-        if (array[i] === target) {
-            return i;
-        } else if (array[i] > target) {
-            let previouseI = i-jumpStep;
-            return jumpSearch(array, target, previouseI, i+1, 1);
+// @return index of target element in array, or -1 if absent.
+// start is inclusive; stop is exclusive.
+const jumpSearch = (array, target, start = 0, stop = array.length, jumpStep = Math.max(1, Math.floor(Math.sqrt(array.length)))) => {
+    if (!Number.isInteger(jumpStep) || jumpStep < 1) {
+        throw new RangeError('jumpStep must be a positive integer');
+    }
+    stop = Math.min(stop, array.length);
+    for (let blockStart = start; blockStart < stop; blockStart += jumpStep) {
+        const blockEnd = Math.min(blockStart + jumpStep, stop);
+        if (array[blockEnd - 1] >= target) {
+            for (let i = blockStart; i < blockEnd; i++) {
+                if (array[i] === target) return i;
+                if (array[i] > target) return -1;
+            }
+            return -1;
         }
     }
+    return -1;
 }
 
 let numbers = [0,1,22,33,44,55,66,77,88,99];
