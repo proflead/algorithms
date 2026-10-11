@@ -6,3 +6,9 @@ To run the scripts use the node command in the terminal.
 node [file_name].js
 
 ```
+
+Run the search regression checks with:
+
+```
+node search.test.js
+```
